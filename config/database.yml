@@ -1,0 +1,29 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  pool: <%= ENV['DB_POOL'] || ENV['RAILS_MAX_THREADS'] || 5 %>
+  port: <%= ENV['DB_PORT'] || 5432 %>
+  sslmode: <%= ENV['DB_SSLMODE'] || 'disable' %>
+
+main: &main
+  host: <%= ENV['DB_HOST']  %>
+  username: <%= ENV.fetch('PGUSER', ENV['DB_USER']) %>
+  password: <%= ENV['DB_PASS'] %>
+
+development:
+  <<: *default
+  <<: *main
+  database: <%= ENV['DB_NAME'] || 'pes_development' %>
+
+test:
+  <<: *default
+  <<: *main
+  database: <%= (ENV['DB_NAME'].present? && "#{ENV['DB_NAME']}_test#{ENV['TEST_ENV_NUMBER']}") || "pes_test#{ENV['TEST_ENV_NUMBER']}" %>
+
+production:
+  <<: *default
+  database: <%= ENV['DB_NAME'] %>
+  host: <%= ENV['DB_HOST']  %>
+  username: <%= ENV.fetch('PGUSER', ENV['DB_USER']) %>
+  password: <%= ENV['DB_PASS'] %>
