@@ -40,7 +40,6 @@ yarn-debug.log*
 .yarn-integrity
 .idea
 
-*/.keep
 /app/assets/images/.keep
 /app/controllers/concerns/.keep
 /app/models/concerns/.keep
@@ -54,3 +53,7 @@ yarn-debug.log*
 /test/models/.keep
 /test/system/.keep
 /tmp/pids/.keep
+/log/.keep
+/storage/.keep
+/tmp/.keep
+/vendor/.keep
